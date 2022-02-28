@@ -1,0 +1,81 @@
+
+{% extends "accounts/main.html" %}
+
+{% block content %}
+
+    <br>
+    <!-- ========== Start Section ========== -->
+    <div class="row">
+       <div  class=" col-md " >
+		    <div  class =" card card-body " >
+			    <h5 > Client : </h5 >
+			    <hr>
+			    <a  class =" btn btn-outline-info btn-sm btn-block " href ="#" > Mettre à jour le client </a>
+			    <a  class =" btn btn-outline-info btn-sm btn-block " href ="#" > Ajouter un client </a>
+            </div>
+	    </div>
+
+	    <div  class =" col-md ">
+		    <div  class =" card card-body ">
+			    <h5> Coordonnées </h5>
+			    <hr>
+			    <p> Courriel :{{customer.email}} </p >
+			    <p> Téléphone :{{customer.phone}} </p >
+		    </div>
+	    </div>
+
+	    <div  class =" col-md " >
+		    <div  class =" card card-body " >
+			    <h5 > Total des commandes </h5 >
+		        <hr>
+			    <h1  style =" text-align: center; padding: 10px " > {{orders_count}} </h1 >
+		    </div >
+	    </div>
+    </div>
+
+
+<br>
+<div  class ="row" >
+	<div  class ="col" >
+		<div  class =" card card-body " >
+			<form  method =" get " >
+		        <button  class =" btn btn-primary " type =" submit " > <i class="fab fa-search"> search </i> </button>
+		    </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div  class ="row" >
+	<div  class =" col-md ">
+		<div  class =" card card-body " >
+			<table  class =" table table-sm " >
+				<tr>
+					<th> <i class="fa fa-th" aria-hidden="true"> Produit </i>  </th >
+					<th> <i class="fa fa-th" aria-hidden="true"> Catégorie </i> </th >
+					<th> <i class="fa fa-th" aria-hidden="true"> Date de commande </i> </th>
+					<th> <i class="fa fa-th" aria-hidden="true">Statut </i> </th>
+					<th> <i class="fa fa-th" aria-hidden="true"> Mise à jour </i> </th>
+					<th> <i class="fa fa-th" aria-hidden="true">Supprimer </i> </th>
+				</tr>
+
+				{% for orders in orders %}
+				
+					<tr> 
+						<td> {{orders.product}} </td>
+						<td> {{orders.product.category}} </td>
+						<td> {{orders.date_created}} </td>
+						<td> {{orders.status}} </td>
+						<td> <a class = "btn btn-sm btn-info" href="{% url 'update_Order' orders.id %}"> Update </a> </td>
+						<td> <a class = "btn btn-sm btn-danger" href="{% url 'delete_Order' orders.id %}"> Delete </a> </td>
+					</tr>	
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+    <!-- ========== End Section ========== -->
+
+{% endblock content %}
