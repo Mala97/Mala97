@@ -34,12 +34,12 @@ def customer(request, pk_test):
      return render(request, 'accounts/Customer.html', context)
 
 # COMMANDES
-def createOrder(request, pk):
+def createOrder(request):
      #OrderFormSet = inlineformset_factory(Customer, Order, fields=)
      
-     customer = Customer.objects.get(id=pk) 
+     #customer = Customer.objects.get(id=pk) 
      
-     form = OrderForm(initial={'customer': customer})
+     form = OrderForm()
      
      if request.method == 'POST':
           #print('Printing Post:', request.POST)
